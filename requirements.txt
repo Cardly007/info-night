@@ -1,0 +1,13 @@
+Flask
+Flask-WTF
+Flask-JWT-Extended
+Flask-Login
+Flask-SQLAlchemy
+Flask-Migrate
+Flask-Admin
+Werkzeug
+WTForms
+Passlib
+gunicorn
+psycopg2-binary
+
