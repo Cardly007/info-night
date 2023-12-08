@@ -19,6 +19,8 @@ from passlib.hash import sha256_crypt  # Importez la méthode de hachage SHA-256
 from functools import wraps
 import os
 
+port = int(os.environ.get('PORT', 5000))
+
 # Configuration de l'application Flask
 app = Flask(__name__)
 app.secret_key = 'GOAT_AND_CO'
@@ -219,4 +221,4 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0", port=port)
 '''
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=port)
