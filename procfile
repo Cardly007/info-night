@@ -1,2 +1,2 @@
-web: gunicorn GOAT_SERVER:app
+web: gunicorn app:app
 
