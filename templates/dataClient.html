@@ -1,0 +1,50 @@
+<!-- Fichier pour la page contenant les données des clients -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des clients</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Liste des clients</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom de la table</th>
+                <th>Nom d'utilisateur</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.table_name }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>
+                        <form action="{{ url_for('delete_client', user_id=user.id) }}" method="post">
+                            <input type="submit" value="Supprimer">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{{ url_for('admin_page') }}">Retour à la page admin</a>
+</body>
+</html>

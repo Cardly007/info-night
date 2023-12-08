@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: white;
+            margin-top: 30px;
+            z-index: 1;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 40px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            z-index: 1;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            background-color: #008CBA;
+            color: white;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+        }
+
+        #admin {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: #f44336;
+            color: white;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video autoplay muted loop id="video-bg">
+            <source src="/Users/cardly/Downloads/info_nuit/fond/_import_61b58e251e5b68.14507349.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <h1>Bienvenue sur GOAT!</h1>
+    <div class="button-container">
+        <a href="/login"><button id="connexion">Connexion</button></a>
+        <a href="/register"><button id="inscription">Inscription</button></a>
+    </div>
+
+    <script>
+        // JavaScript to resize the video when the window is resized
+        window.addEventListener('resize', function() {
+            var video = document.getElementById('video-bg');
+            var container = document.querySelector('.video-container');
+            var aspectRatio = video.videoWidth / video.videoHeight;
+            var newHeight = container.offsetWidth / aspectRatio;
+            video.style.width = '100%';
+            video.style.height = newHeight + 'px';
+        });
+
+        // Trigger the resize event to initially set the correct size
+        window.dispatchEvent(new Event('resize'));
+    </script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+                                                     <!-- Fichier pour la page de connexion -->
+
+
+
+
+{% macro display_login_field(fieldname, placeholdervalue) %}
+    <div>
+        <label for="{{ fieldname.name }}">{{ fieldname.label }}</label>
+        <div class="input-icon">
+            {% if fieldname.name == 'username' %}
+                <span class="icon user-icon">
+                    <i class="fas fa-user"></i>
+                </span>
+            {% elif fieldname.name == 'password' %}
+                <span class="icon key-icon">
+                    <i class="fas fa-key"></i>
+                </span>
+            {% endif %}
+            {{ fieldname(class_='form-control', placeholder=placeholdervalue, **kwargs) }}
+        </div>
+        <ul>
+            {% for error in fieldname.errors %}
+                <li style="color: red;">{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% if error_message %}
+            <p style="color: red;">{{ error_message }}</p>
+        {% endif %}
+    </div>
+{% endmacro %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: url('https://img.freepik.com/vecteurs-libre/contexte-realiste-particule-technologie-abstraite_23-2148431735.jpg?size=626&ext=jpg&ga=GA1.1.1309594199.1699571166&semt=ais') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 300px;
+            background-color: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        div {
+            margin: 10px 0;
+            position: relative;
+        }
+
+        input {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 5px;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        input::placeholder {
+            color: #bbb;
+        }
+
+        input:focus {
+            outline: none;
+            border: 2px solid #8e24aa;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+
+        p {
+            color: red;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            background-color: #008CBA;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #c62828;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .input-icon {
+            position: relative;
+        }
+
+        .icon {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            height: 100%;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #333;
+        }
+
+        .user-icon,
+        .key-icon {
+            left: -25px;
+        }
+
+        #home-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: rgb(34, 72, 134);
+            color: white;
+        }
+
+        #home-button:hover {
+            background-color: #4557a0;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <h1>Connexion</h1>
+    <form method="POST">
+        {{ form.csrf_token }}
+        {{ display_login_field(form.username, 'Nom d\'utilisateur') }}
+        {{ display_login_field(form.password, 'Mot de passe') }}
+        <div>
+            <button type="submit">Se connecter</button>
+        </div>
+    </form>
+    <a href="/"><button id="home-button">Retour à la page d'accueil</button></a>
+</body>
+</html>

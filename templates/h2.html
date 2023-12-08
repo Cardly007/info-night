@@ -1,0 +1,76 @@
+<!-- Fichier pour la page d'Accueil -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: url('https://img.freepik.com/vecteurs-libre/contexte-realiste-particule-technologie-abstraite_23-2148431735.jpg?size=626&ext=jpg&ga=GA1.1.1309594199.1699571166&semt=ais') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: white; /* Couleur du titre en blanc */
+            margin-top: 30px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 40px; /* Augmentation de la marge pour agrandir la zone des boutons */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            background-color: #008CBA;
+            color: white;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+        }
+
+        #admin {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bienvenue sur GOAT!</h1>
+    <div class="button-container">
+        <a href="/login"><button id="connexion">Connexion</button></a>
+        <a href="/register"><button id="inscription">Inscription</button></a>
+    </div>
+</body>
+</html>

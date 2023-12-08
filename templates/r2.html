@@ -1,0 +1,194 @@
+                                                     <!-- Fichier pour la page d'inscription -->
+
+
+
+
+{% extends "outils.html" %} <!-- hériter du contenu d'un autre modèle (outil.html) -->
+
+{% block title %}Inscription{% endblock %}
+
+{% block content %}
+    <style>
+        /* Styles CSS */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: url('https://img.freepik.com/vecteurs-libre/contexte-realiste-particule-technologie-abstraite_23-2148431735.jpg?size=626&ext=jpg&ga=GA1.1.1309594199.1699571166&semt=ais') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 300px;
+            background-color: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        div {
+            margin: 10px 0;
+            position: relative;
+        }
+
+        input {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 5px;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        input::placeholder {
+            color: #bbb;
+        }
+
+        input:focus {
+            outline: none;
+            border: 2px solid #8e24aa;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+
+        p {
+            color: red;
+        }
+
+        .input-icon {
+            position: relative;
+        }
+
+        .icon {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            height: 100%;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #333;
+        }
+
+        .user-icon {
+            left: -25px;
+        }
+
+        .key-icon {
+            left: -25px;
+        }
+
+        #home-button {
+            position: fixed;
+            bottom: 20px; /* Ajustez la distance depuis le bas selon vos préférences */
+            right: 20px; /* Ajustez la distance depuis la droite selon vos préférences */
+            padding: 15px 30px; /* Ajustez la taille du bouton selon vos préférences */
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: rgb(34, 72, 134);
+            color: white;
+        }
+
+        #home-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+        }
+        #create-account-button {
+            /* Styles spécifiques pour le bouton "Créer un compte" */
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease; /* Ajout d'une transition pour le bouton */
+            background-color: #008CBA; /* Couleur bleue pour le bouton */
+            color: #008CBA; /* Couleur de police blanche */
+        }
+
+        #create-account-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+        }
+
+    </style>
+
+    <h1>Créer un compte</h1>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <form action="{{ url_for('register') }}" method="POST">
+        <div>
+            <label for="{{ form.username.name }}">Nom d'utilisateur</label>
+            <div class="input-icon">
+                <span class="icon user-icon">
+                    <i class="fas fa-user"></i>
+                </span>
+                {{ form.username(class_='form-control', placeholder="Nom d'utilisateur", autocomplete="off", autofocus=true) }}
+            </div>
+            <ul>
+                {% for error in form.username.errors %}
+                    <li style="color: red;">{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <label for="{{ form.password.name }}">Mot de passe</label>
+            <div class="input-icon">
+                <span class="icon key-icon">
+                    <i class="fas fa-key"></i>
+                </span>
+                {{ form.password(class_='form-control', placeholder="Mot de passe") }}
+            </div>
+            <ul>
+                {% for error in form.password.errors %}
+                    <li style="color: red;">{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <label for="{{ form.confirm.name }}">Confirmer le mot de passe</label>
+            <div class="input-icon">
+                <span class="icon key-icon">
+                    <i class="fas fa-key"></i>
+                </span>
+                {{ form.confirm(class_='form-control', placeholder="Confirmer le mot de passe") }}
+            </div>
+            <ul>
+                {% for error in form.confirm.errors %}
+                    <li style="color: red;">{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            {{ form.submit(class_='form-control', value="Créer un compte") }}
+        </div>
+        {{ form.csrf_token }}
+    </form>
+    <a href="/"><button id="home-button">Retour à la page d'accueil</button></a>
+{% endblock %}

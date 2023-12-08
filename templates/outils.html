@@ -1,0 +1,15 @@
+<!--fichier template tous ce que l'on mets ici pourra etre utilise par les autre pages-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %} {% endblock %} </title> <!--usage de jinja pour  définir un espace réservé pour le titre dans un fichier de modèle-->
+    </head>
+    <body>
+        <!--usage de jinja-->
+        {% block content %}
+
+        {% endblock %}
+
+    </body>
+</html>
